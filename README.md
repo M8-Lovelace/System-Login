@@ -1,6 +1,6 @@
 # System-login
 
-Este paquete utiliza Vue 3, localstorage, pinia, quasar y Quasar Framework para crear una interfaz de usuario interactiva y atractiva.
+Este paquete utiliza Vue 3, localstorage, pinia y Quasar Framework para crear una interfaz de usuario interactiva y atractiva.
 
 ## Instalación
 
