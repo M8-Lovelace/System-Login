@@ -2,7 +2,7 @@
   <Layout></Layout>
 </template>
 <script setup>
-import Layout from "./components/Layout.vue";
+import Layout from "./views/layout.vue";
 </script>
 
 <style>
