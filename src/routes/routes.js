@@ -1,9 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Login from "../views/login.vue";
+import Home from "../views/home.vue";
 
 export const routes= [
-  { path: '/', component: Login},
-  // { path: '/perfil', component: perfil},
+  { name: 'login', path: '/', component: Login},
+  { name: 'home', path: '/home', component: Home},
   // { path: '/registro', component: registro},
   // { path: '/:pathMatch(.*)*', component: PageNotFound},
 ];

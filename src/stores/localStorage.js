@@ -3,11 +3,11 @@ import { defineStore } from "pinia";
 
 export const ctrlUser = defineStore("ctrlUser",()=> {
   //Obtener el usuario del localstorage
-  const getUser = () => JSON.parse(localStorage.getItem('user')) 
+  const getUser = () => JSON.parse(localStorage.getItem('user') ?? {})
 
-  function singOut() {localStorage.removeItem('user')}
+  function signOut() {localStorage.removeItem('user')}
 
-  function singIn(user) {
+  const signIn = (user) => {
     /*
     user = {
       email,
@@ -18,6 +18,6 @@ export const ctrlUser = defineStore("ctrlUser",()=> {
     localStorage.setItem('user', JSON.stringify(user))
   }
 
-  return {getUser,singOut,singIn}
+  return {getUser,signOut,signIn}
 
 });
