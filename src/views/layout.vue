@@ -3,7 +3,9 @@
     <Header v-if="routeName != 'login'"></Header>
     <div class="row">
       <Sidebar class="col-2" v-if="menu.menuIsOpen  == true"></Sidebar>
+      <q-page-container>
       <router-view v-bind:style="routerStyle" class="router-view"></router-view>
+      </q-page-container>
     </div>
     <Footer v-if="routeName != 'login'"></Footer>
   </q-layout>

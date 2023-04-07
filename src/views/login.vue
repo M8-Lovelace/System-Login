@@ -11,7 +11,7 @@
 import Form from "../modules/form-login.vue";
 </script>
 
-<style>
+<style scoped>
 .form-container {
   width: 450px;
   height: 450px;
