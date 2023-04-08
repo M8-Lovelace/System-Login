@@ -1,17 +1,33 @@
 <script setup>
 import { ref } from "vue";
 
+
 //components
 import Avatar from "../modules/register/avatar-register.vue";
 import FormRegister from "../modules/register/form-register.vue";
+
+const avatarSelected = ref("./images/avatar1.png");
+
+const resertValues = () => {
+  avatarSelected.value = "./images/avatar1.png";
+};
+
+
+const changeAvatar = (avatar) => {
+  avatarSelected.value = avatar;
+  
+};
+
+
+
 </script>
 
 <template>
   <q-page class="justify-center flex row items-center flex overflow-auto">
     <div class="col-6 form-container row">
       <span class="text-center col-12 text-h4 q-mb-md">Registro</span>
-      <Avatar />
-      <FormRegister />
+      <Avatar :avatarSelected="avatarSelected" :changeAvatar="changeAvatar" />
+      <FormRegister :avatarSelected="avatarSelected"  :changeAvatar="changeAvatar" />
     </div>
   </q-page>
 </template>

@@ -63,7 +63,7 @@ function cleanInputs() {
   password.value = "";
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
   if (isInputsValidate()) {
     $q.dialog({
@@ -80,11 +80,28 @@ function onSubmit(e) {
       // rol: rol.value,
     };
 
-    storage.signIn(newSesion);
+    console.log(await storage.signIn(newSesion));
 
-    router.push({
+    if(await storage.signIn(newSesion)){
+      $q.notify({
+        message: "Bienvenido",
+        color: "green",
+        position: "top",
+        timeout: 2000,
+      });
+      router.push({
       name: "home",
     });
+    }else{
+      $q.notify({
+        message: "Usuario o contraseña incorrectos",
+        color: "red",
+        position: "top",
+        timeout: 2000,
+      });
+    }
+
+    
   }
 }
 </script>

@@ -1,7 +1,14 @@
 <script setup>
-import { ref } from "vue";
+import { ref,defineProps } from "vue";
 
-const avatarSelected = ref("./images/avatar1.png");
+const props = defineProps({
+  avatarSelected: String,
+  changeAvatar: Function,
+});
+
+
+
+
 </script>
 
 <template>
@@ -15,7 +22,7 @@ const avatarSelected = ref("./images/avatar1.png");
         <q-item class="q-pa-none" v-for="(avatar, index) in 5" :key="index">
           <q-avatar
             class="q-mx-xs"
-            @click="avatarSelected = '/images/avatar' + (index + 1) + '.png'"
+            @click="changeAvatar('/images/avatar' + (index + 1) + '.png')"
           >
             <q-img :src="'/images/avatar' + (index + 1) + '.png'" />
           </q-avatar>
