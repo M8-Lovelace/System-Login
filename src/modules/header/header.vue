@@ -4,7 +4,7 @@
       <q-btn flat round dense icon="menu" class="q-mr-sm" @click="toggle()" />
       <q-space></q-space>
       <q-btn flat round dense icon="search" class="q-mr-xs" />
-      <q-btn flat round dense icon="group_add" />
+      <q-btn flat round dense icon="group_add" to="/register" />
     </q-toolbar>
   </q-header>
 </template>
@@ -16,6 +16,5 @@ const menu = menuState();
 
 function toggle() {
   menu.toggleMenu();
-};
-
+}
 </script>
