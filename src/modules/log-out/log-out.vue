@@ -13,10 +13,14 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import { ctrlUser } from "@/stores/localStorage";
 
+const storage = ctrlUser();
 const router = useRouter();
 
-function logOut() {
+async function logOut() {
+  storage.signOut();
+
   router.push({
     name: "login",
   });

@@ -80,8 +80,6 @@ async function onSubmit(e) {
       // rol: rol.value,
     };
 
-    console.log(await storage.signIn(newSesion));
-
     if(await storage.signIn(newSesion)){
       $q.notify({
         message: "Bienvenido",
