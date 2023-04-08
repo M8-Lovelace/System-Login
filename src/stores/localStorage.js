@@ -12,12 +12,11 @@ export const ctrlUser = defineStore("ctrlUser", () => {
   }
 
   const signIn = async(user) => {
-    const users = await JSON.parse(localStorage.getItem("users"));
+    const users = await JSON.parse(localStorage.getItem("users") || '[{ "email": "admin", "password": "admin", "rol": "admin" }]');
 
     const userValid = users.find((userItem) => userItem.email == user.mail && userItem.password == user.password );
     
     if (userValid != undefined) {
-      console.log('userValid', userValid);
       localStorage.setItem("user", JSON.stringify(userValid));
       return true;
     }
