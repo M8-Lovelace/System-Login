@@ -32,18 +32,27 @@ export const routes = [
   },
   {
     name: "register",
+    path: "/register/:id",
+    component: Register,
+    beforeEnter: checkAuth,
+  },
+  {
+    name: "register",
     path: "/register",
     component: Register,
+    beforeEnter: checkAuth,
   },
+
   {
     name: "profile",
     path: "/profile",
     component: Profile,
+    beforeEnter: checkAuth,
   },
   {
     path: "/:pathMatch(.*)*",
     redirect: "/",
-  },
+  }, 
 ];
 
 export const router = createRouter({
