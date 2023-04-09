@@ -106,7 +106,7 @@ export default {
 .name-text{
   font-size: 1.4rem;
   font-weight: 700;
-  text-transform: capitalize;
+
 }
 .info-text{
   font-size: 1rem;
