@@ -121,7 +121,7 @@ const registerUser = async () => {
         :rules="[
           (val) =>
             /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{5,}$/g.test(val) ||
-            'La contraseña débil',
+            'La contraseña es débil',
         ]"
       >
         <template v-slot:append>
