@@ -1,6 +1,7 @@
 <script setup>
 import { ref, defineProps } from "vue";
 import { useQuasar } from "quasar";
+import { useRouter } from "vue-router";
 
 //state
 import { ctrlUser } from "@/stores/localStorage";
@@ -8,17 +9,25 @@ import { ctrlUser } from "@/stores/localStorage";
 const props = defineProps({
   avatarSelected: String,
   changeAvatar: Function,
+  infoUser: {
+    type: Object,
+    default: {},
+  },
 });
 
 const $q = useQuasar();
 const storage = ctrlUser();
+const router = useRouter();
 
 const formRegister = ref(null);
-const name = ref("");
-const email = ref("");
+const name = ref(props.infoUser.name || "");
+const email = ref(props.infoUser.email || "");
 const pass1 = ref("");
 const pass2 = ref("");
-const rol = ref({ value: 1, label: "Operador" });
+const rol = ref({
+  value: props.infoUser.rol === 0 || props.infoUser.rol === 1 ? props.infoUser.rol : 1,
+  label: props.infoUser.rol === 0 ? "Administrador" : "Operador",
+});
 const options = [
   {
     value: 0,
@@ -43,6 +52,15 @@ const resetValues = () => {
   formRegister.value.resetValidation();
 };
 
+const notify = (message, color) => {
+  $q.notify({
+    message: message,
+    color: color,
+    position: "top",
+    timeout: 2000,
+  });
+};
+
 
 const registerUser = async () => {
   const data = {
@@ -50,25 +68,33 @@ const registerUser = async () => {
     email: (email.value).trim(),
     password: pass1.value.trim(),
     rol: rol.value.value,
-    avatar : props.avatarSelected,
+    avatar: props.avatarSelected,
   };
 
-  if(await storage.setUser(data)){
-    $q.notify({
-      message: "Usuario registrado correctamente",
-      color: "green",
-      position: "top",
-      timeout: 2000,
-    });
-    resetValues();
-    
-  }else{
-    $q.notify({
-      message: "EL usuario ya existe",
-      color: "red",
-      position: "top",
-      timeout: 2000,
-    });
+  if (props.infoUser.id) {
+    data.id = props.infoUser.id;
+    if (await storage.updateUser(data)) {
+      notify("Los cambios se verán reflejados en la próxima sesión","green",true);
+      storage.signOut();
+      router.push({
+      name: "home",
+      });
+
+
+    } else {
+      notify("Usuario ya existe","red",false);
+    }
+
+  } else {
+
+    if (await storage.setUser(data)) {
+      notify("Usuario registrado correctamente","green",true);
+      resetValues();
+
+    } else {
+      notify("Usuario ya existe","red",false);
+      
+    }
   }
 };
 
@@ -178,7 +204,7 @@ const registerUser = async () => {
   <div class="justify-center flex full-width q-mt-lg q-gutter-md">
     <q-btn color="primary" type="submit" form="form-register">
       <q-icon name="save" />
-      <span class="q-ml-xs">Registrar</span>
+      <span class="q-ml-xs">Guardar</span>
     </q-btn>
   </div>
 </template>

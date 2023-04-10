@@ -1,25 +1,38 @@
 <script setup>
 import { ref } from "vue";
+import { ctrlUser } from "@/stores/localStorage";
 
 
 //components
 import Avatar from "../modules/register/avatar-register.vue";
-import FormRegister from "../modules/register/form-register.vue";
+import FormEdit from "../modules/register/form-register.vue";
 
-const avatarSelected = ref("/images/avatar1.png");
+const storage = ctrlUser();
+const user = storage.getUser();
+const avatarSelected = ref(user.avatar);
 
 const changeAvatar = (avatar) => {
   avatarSelected.value = avatar;
 };
+
+const infoUser = {
+    id : user.id,
+  name: user.name,
+  email: user.email,
+  rol: user.rol,
+  avatar: user.avatar,
+  pass : user.password
+};
+
 
 </script>
 
 <template>
   <q-page class="justify-center flex row items-center flex overflow-auto">
     <div class="col-6 form-container row">
-      <span class="text-center col-12 text-h4 q-mb-md">Registro</span>
+      <span class="text-center col-12 text-h4 q-mb-md">Editar</span>
       <Avatar :avatarSelected="avatarSelected" :changeAvatar="changeAvatar" />
-      <FormRegister :avatarSelected="avatarSelected"  :changeAvatar="changeAvatar" />
+      <FormEdit :avatarSelected="avatarSelected"  :changeAvatar="changeAvatar" :infoUser="infoUser" />
     </div>
   </q-page>
 </template>

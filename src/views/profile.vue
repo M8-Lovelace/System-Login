@@ -6,17 +6,25 @@
           <q-card-section class="top-card justify-center flex row q-pb-xl">
             <div class="col-12 full-width">
               <div class="row justify-between text-white">
-                <q-btn flat round icon="arrow_back" />
-                <span class="text-h5 text-capitalize">jorge Luis</span>
-                <q-btn flat round icon="more_vert" />
+                <q-btn flat round icon="arrow_back" to="/home"  />
+                <span class="text-h5 text-capitalize"> {{ user.name }} </span>
+                <q-btn flat round icon="more_vert" > 
+                  <q-menu class="bg-white text-black" auto-close self="top middle">
+                  <q-list style="min-width: 50px">
+                    <q-item clickable dense to="/edit">
+                      <q-item-section >Ver más</q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+                </q-btn>
               </div>
             </div>
             <div class="img-avatar q-mt-sm q-mb-md">
-              <q-img src="/images/avatar1.png" />
+              <q-img :src="user.avatar" />
             </div>
 
-            <div class="col-12 text-white justify-center flex name-text">Jlroa82@misena.edu.co</div>
-            <div class="col-12 text-white justify-center flex info-text">Admin</div>
+            <div class="col-12 text-white justify-center flex name-text">{{ user.email }}</div>
+            <div class="col-12 text-white justify-center flex info-text">{{ user.rol === 0 ? 'Administrador' : 'Operador' }}</div>
 
           </q-card-section>
 
@@ -25,7 +33,7 @@
                 class=" q-mb-md text-capitalize btn-edit"
                 rounded
                 label="Editar"
-                @click="editProfile()"
+                to="/edit"
                 />
                 <div class="full-width content text-center">
                     Leer más <br>
@@ -42,16 +50,15 @@
   </q-page>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup>
+import {ref} from 'vue'
+import { ctrlUser } from "@/stores/localStorage";
 
-export default {
-  setup() {
-    return {
-      stars: ref(4),
-    };
-  },
-};
+/* "id":"sdf1","name":"admin","email": "admin", "password": "admin", "rol": 0, "avatar": "/images/avatar1.png" */
+const storage = ctrlUser();
+const user = storage.getUser();
+
+
 </script>
 
 <style scoped>

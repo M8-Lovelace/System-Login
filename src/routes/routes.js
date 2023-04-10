@@ -2,13 +2,12 @@ import { createWebHistory, createRouter } from "vue-router";
 import Login from "../views/login.vue";
 import Home from "../views/home.vue";
 import Register from "../views/register.vue";
+import Edit from "../views/editUser.vue";
 import Profile from "../views/profile.vue";
 
 const checkAuth = async (to, from, next) => {
   const isAuthenticated = await JSON.parse(localStorage.getItem("user"));
-  console.log("isAuthenticated", isAuthenticated);
-
-  if (isAuthenticated && isAuthenticated.email && isAuthenticated.rol) {
+  if (isAuthenticated && isAuthenticated.email && isAuthenticated.rol !== "") {
     next();
   } else {
     next("/");
@@ -22,7 +21,15 @@ export const routes = [
     name: "login",
     path: "/",
     component: Login,
-    
+    beforeEnter: async (to, from, next) => {
+      const isAuthenticated = await JSON.parse(localStorage.getItem("user"));
+      console.log(isAuthenticated);
+      if (isAuthenticated && isAuthenticated.email && isAuthenticated.rol) {
+        next("/home");
+      } else {
+        next();
+      }
+    }
   },
   {
     name: "home",
@@ -31,9 +38,9 @@ export const routes = [
     beforeEnter: checkAuth,
   },
   {
-    name: "register",
-    path: "/register/:id",
-    component: Register,
+    name: "edit",
+    path: "/edit",
+    component: Edit,
     beforeEnter: checkAuth,
   },
   {
@@ -51,7 +58,7 @@ export const routes = [
   },
   {
     path: "/:pathMatch(.*)*",
-    redirect: "/",
+    redirect: "/home",
   }, 
 ];
 
