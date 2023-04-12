@@ -6,16 +6,20 @@
           <q-card-section class="top-card justify-center flex row q-pb-xl">
             <div class="col-12 full-width">
               <div class="row justify-between text-white">
-                <q-btn flat round icon="arrow_back" to="/home"  />
+                <q-btn flat round icon="arrow_back" to="/home" />
                 <span class="text-h5 text-capitalize"> {{ user.name }} </span>
-                <q-btn flat round icon="more_vert" > 
-                  <q-menu class="bg-white text-black" auto-close self="top middle">
-                  <q-list style="min-width: 50px">
-                    <q-item clickable dense to="/edit">
-                      <q-item-section >Ver más</q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
+                <q-btn flat round icon="more_vert">
+                  <q-menu
+                    class="bg-white text-black"
+                    auto-close
+                    self="top middle"
+                  >
+                    <q-list style="min-width: 50px">
+                      <q-item clickable dense to="/edit">
+                        <q-item-section>Ver más</q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu>
                 </q-btn>
               </div>
             </div>
@@ -23,27 +27,28 @@
               <q-img :src="user.avatar" />
             </div>
 
-            <div class="col-12 text-white justify-center flex name-text">{{ user.email }}</div>
-            <div class="col-12 text-white justify-center flex info-text">{{ user.rol === 0 ? 'Administrador' : 'Operador' }}</div>
-
+            <div class="col-12 text-white justify-center flex name-text">
+              {{ user.email }}
+            </div>
+            <div class="col-12 text-white justify-center flex info-text">
+              {{ user.rol === 0 ? "Administrador" : "Operador" }}
+            </div>
           </q-card-section>
 
           <q-card-section class="bottom-card justify-center flex q-pa-none">
             <q-btn
-                class=" q-mb-md text-capitalize btn-edit"
-                rounded
-                label="Editar"
-                to="/edit"
-                />
-                <div class="full-width content text-center">
-                    Leer más <br>
-                    <q-icon name="arrow_downward" color="blue" size="20px" />
-                </div>
-           
+              class="q-mb-md text-capitalize btn-edit"
+              rounded
+              label="Editar"
+              to="/edit"
+            />
+            <div class="full-width content text-center">
+              Leer más <br />
+              <q-icon name="arrow_downward" color="blue" size="20px" />
+            </div>
           </q-card-section>
 
           <q-separator />
-
         </q-card>
       </div>
     </div>
@@ -51,14 +56,12 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import { ref } from "vue";
 import { ctrlUser } from "@/stores/localStorage";
 
 /* "id":"sdf1","name":"admin","email": "admin", "password": "admin", "rol": 0, "avatar": "/images/avatar1.png" */
 const storage = ctrlUser();
 const user = storage.getUser();
-
-
 </script>
 
 <style scoped>
@@ -90,11 +93,10 @@ const user = storage.getUser();
   background-color: #0000009c;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 .bottom-card {
   background-color: #f0f0f0;
-  border-radius:15px !important;
+  border-radius: 15px !important;
 }
 
 .img-avatar {
@@ -102,7 +104,6 @@ const user = storage.getUser();
   background: rgb(255, 255, 255);
   border-radius: 50%;
   padding: 3px;
-
 }
 .img-avatar img {
   width: 10%;
@@ -110,29 +111,27 @@ const user = storage.getUser();
   border-radius: 50%;
 }
 
-.name-text{
+.name-text {
   font-size: 1.4rem;
   font-weight: 700;
-
 }
-.info-text{
+.info-text {
   font-size: 1rem;
   font-weight: 500;
   text-transform: capitalize;
 }
 
-.btn-edit{
-    transform: translateY(-50%);
-    background: white;
-    padding: 7px 30px;
+.btn-edit {
+  transform: translateY(-50%);
+  background: white;
+  padding: 7px 30px;
 }
 
-.content{
-    font-family: "Ubuntu", sans-serif;
-    width: 100%;
-    transform: translateY(-40%);
-    height: 100%;
-    padding-bottom: 10px;
+.content {
+  font-family: "Ubuntu", sans-serif;
+  width: 100%;
+  transform: translateY(-40%);
+  height: 100%;
+  padding-bottom: 10px;
 }
-
 </style>

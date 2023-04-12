@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { ctrlUser } from "@/stores/localStorage";
 
-
 //components
 import Avatar from "../modules/register/avatar-register.vue";
 import FormEdit from "../modules/register/form-register.vue";
@@ -16,15 +15,13 @@ const changeAvatar = (avatar) => {
 };
 
 const infoUser = {
-    id : user.id,
+  id: user.id,
   name: user.name,
   email: user.email,
   rol: user.rol,
   avatar: user.avatar,
-  pass : user.password
+  pass: user.password,
 };
-
-
 </script>
 
 <template>
@@ -32,7 +29,11 @@ const infoUser = {
     <div class="col-6 form-container row">
       <span class="text-center col-12 text-h4 q-mb-md">Editar</span>
       <Avatar :avatarSelected="avatarSelected" :changeAvatar="changeAvatar" />
-      <FormEdit :avatarSelected="avatarSelected"  :changeAvatar="changeAvatar" :infoUser="infoUser" />
+      <FormEdit
+        :avatarSelected="avatarSelected"
+        :changeAvatar="changeAvatar"
+        :infoUser="infoUser"
+      />
     </div>
   </q-page>
 </template>

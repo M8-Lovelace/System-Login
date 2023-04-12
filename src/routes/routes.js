@@ -12,9 +12,7 @@ const checkAuth = async (to, from, next) => {
   } else {
     next("/");
   }
-}
-
-
+};
 
 export const routes = [
   {
@@ -29,7 +27,7 @@ export const routes = [
       } else {
         next();
       }
-    }
+    },
   },
   {
     name: "home",
@@ -59,7 +57,7 @@ export const routes = [
   {
     path: "/:pathMatch(.*)*",
     redirect: "/home",
-  }, 
+  },
 ];
 
 export const router = createRouter({

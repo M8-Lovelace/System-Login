@@ -75,12 +75,11 @@ async function onSubmit(e) {
     });
   } else {
     const newSesion = {
-      mail: mail.value,
+      email: mail.value,
       password: password.value,
-      // rol: rol.value,
     };
 
-    if(await storage.signIn(newSesion)){
+    if (await storage.signIn(newSesion)) {
       $q.notify({
         message: "Bienvenido",
         color: "green",
@@ -88,9 +87,9 @@ async function onSubmit(e) {
         timeout: 2000,
       });
       router.push({
-      name: "home",
-    });
-    }else{
+        name: "home",
+      });
+    } else {
       $q.notify({
         message: "Usuario o contraseña incorrectos",
         color: "red",
@@ -98,8 +97,6 @@ async function onSubmit(e) {
         timeout: 2000,
       });
     }
-
-    
   }
 }
 </script>

@@ -25,7 +25,10 @@ const email = ref(props.infoUser.email || "");
 const pass1 = ref("");
 const pass2 = ref("");
 const rol = ref({
-  value: props.infoUser.rol === 0 || props.infoUser.rol === 1 ? props.infoUser.rol : 1,
+  value:
+    props.infoUser.rol === 0 || props.infoUser.rol === 1
+      ? props.infoUser.rol
+      : 1,
   label: props.infoUser.rol === 0 ? "Administrador" : "Operador",
 });
 const options = [
@@ -61,11 +64,10 @@ const notify = (message, color) => {
   });
 };
 
-
 const registerUser = async () => {
   const data = {
-    name: (name.value).trim().toUpperCase(),
-    email: (email.value).trim(),
+    name: name.value.trim().toUpperCase(),
+    email: email.value.trim(),
     password: pass1.value.trim(),
     rol: rol.value.value,
     avatar: props.avatarSelected,
@@ -74,36 +76,33 @@ const registerUser = async () => {
   if (props.infoUser.id) {
     data.id = props.infoUser.id;
     if (await storage.updateUser(data)) {
-      notify("Los cambios se verán reflejados en la próxima sesión","green",true);
+      notify(
+        "Los cambios se verán reflejados en la próxima sesión",
+        "green",
+        true
+      );
       storage.signOut();
       router.push({
-      name: "home",
+        name: "home",
       });
-
-
     } else {
-      notify("Usuario ya existe","red",false);
+      notify("Usuario ya existe", "red", false);
     }
-
   } else {
-
-    if (await storage.setUser(data)) {
-      notify("Usuario registrado correctamente","green",true);
+    if (await storage.addUser(data)) {
+      notify("Usuario registrado correctamente", "green", true);
       resetValues();
-
     } else {
-      notify("Usuario ya existe","red",false);
-      
+      notify("Usuario ya existe", "red", false);
     }
   }
 };
-
 </script>
 
 <template>
   <div class="col-sm-8 col-md-6 col-12 items-center flex">
     <q-form
-    ref="formRegister"
+      ref="formRegister"
       class="full-width"
       @submit.prevent.stop="registerUser"
       id="form-register"

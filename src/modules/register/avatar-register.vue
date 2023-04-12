@@ -1,14 +1,10 @@
 <script setup>
-import { ref,defineProps } from "vue";
+import { ref, defineProps } from "vue";
 
 const props = defineProps({
   avatarSelected: String,
   changeAvatar: Function,
 });
-
-
-
-
 </script>
 
 <template>
