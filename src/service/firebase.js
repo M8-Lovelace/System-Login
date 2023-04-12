@@ -43,7 +43,6 @@ async function updateInfoUser(infoUser) {
   console.log(userExist);
 
   if (userExist) {
-    console.log("entre");
     return false;
   }
 

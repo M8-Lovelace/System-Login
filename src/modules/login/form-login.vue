@@ -86,7 +86,7 @@ async function onSubmit(e) {
         position: "top",
         timeout: 2000,
       });
-      router.push({
+      router.replace({
         name: "home",
       });
     } else {
