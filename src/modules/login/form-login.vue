@@ -14,7 +14,7 @@
         ]"
       />
 
-      <div>
+      <div v-if="!isLoading">
         <q-btn
           label="Iniciar Sesión"
           @click="onSubmit($event)"
@@ -28,6 +28,9 @@
           class="q-ml-sm"
           @click="cleanInputs()"
         />
+      </div>
+      <div v-else class="justify-center flex ">
+        <q-spinner-ios color="primary" size="2.5em" />
       </div>
     </q-form>
   </div>
@@ -45,6 +48,7 @@ const storage = ctrlUser();
 const router = useRouter();
 const menu = menuState();
 
+const isLoading = ref(false)
 let mail = ref();
 let password = ref();
 
@@ -74,6 +78,8 @@ async function onSubmit(e) {
       persistent: true,
     });
   } else {
+
+    isLoading.value = true
     const newSesion = {
       email: mail.value,
       password: password.value,
@@ -97,6 +103,7 @@ async function onSubmit(e) {
         timeout: 2000,
       });
     }
+    isLoading.value = false
   }
 }
 </script>

@@ -7,7 +7,7 @@ import Profile from "../views/profile.vue";
 
 const checkAuth = async (to, from, next) => {
   const isAuthenticated = await JSON.parse(localStorage.getItem("user"));
-  if (isAuthenticated && isAuthenticated.email && isAuthenticated.rol !== "") {
+  if (isAuthenticated && isAuthenticated.id && isAuthenticated.rol !== "") {
     next();
   } else {
     next("/");
