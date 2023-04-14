@@ -56,12 +56,18 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { ctrlUser } from "@/stores/localStorage";
 
-/* "id":"sdf1","name":"admin","email": "admin", "password": "admin", "rol": 0, "avatar": "/images/avatar1.png" */
 const storage = ctrlUser();
-const user = storage.getUser();
+const user = ref({});
+
+onBeforeMount(async () => {
+  user.value= await storage.getUser();
+});
+
+
+
 </script>
 
 <style scoped>

@@ -1,5 +1,6 @@
 // Importamos la función de Pinia para definir el store
 import {
+  getUserId,
   getUsers,
   setUser,
   validateUser,
@@ -9,7 +10,11 @@ import { defineStore } from "pinia";
 
 export const ctrlUser = defineStore("ctrlUser", () => {
   //Obtener el usuario del localstorage
-  const getUser = () => JSON.parse(localStorage.getItem("user"));
+  const getUser = async () => {
+    const userLocal = JSON.parse(localStorage.getItem("user"))
+    const user = await getUserId(userLocal.id); 
+    return user;
+  };
 
   //cerrar sesión
   const signOut = () => {
@@ -27,7 +32,12 @@ export const ctrlUser = defineStore("ctrlUser", () => {
     );
 
     if (userValid != undefined) {
-      localStorage.setItem("user", JSON.stringify(userValid));
+      const user = {
+        email: userValid.email,
+        id: userValid.id,
+      }
+
+      localStorage.setItem("user", JSON.stringify(user));
       return true;
     }
 

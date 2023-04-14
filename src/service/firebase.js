@@ -4,7 +4,6 @@ import firebase from "../boot/axios";
 function formatJsonFirebase(json) {
   const data = [];
   for (let key in json.data) {
-    console.log(key);
     data.push({
       id: key,
       ...json.data[key],
@@ -17,6 +16,12 @@ function formatJsonFirebase(json) {
 async function getUsers() {
   const users = await firebase.get("/users/user.json");
   return formatJsonFirebase(users);
+}
+
+//getUser for id
+async function getUserId(id) {
+  const user = await firebase.get(`/users/user/${id}.json`)
+  return  user.data;
 }
 
 //set new user in the database
@@ -51,4 +56,4 @@ async function updateInfoUser(infoUser) {
   return true;
 }
 
-export { setUser, getUsers, validateUser, updateInfoUser };
+export { getUserId, setUser, getUsers, validateUser, updateInfoUser };

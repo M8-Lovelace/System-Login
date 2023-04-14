@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref,onBeforeMount } from "vue";
 import { ctrlUser } from "@/stores/localStorage";
 
 //components
@@ -7,21 +7,29 @@ import Avatar from "../modules/register/avatar-register.vue";
 import FormEdit from "../modules/register/form-register.vue";
 
 const storage = ctrlUser();
-const user = storage.getUser();
-const avatarSelected = ref(user.avatar);
+const user = ref({});
+const avatarSelected = ref();
+const infoUser = ref({});
+
+onBeforeMount(async () => {
+  user.value= await storage.getUser();
+  avatarSelected.value = user.value.avatar;
+
+  infoUser.value = {
+    id: user.value.id,
+    name: user.value.name,
+    email: user.value.email,
+    rol: user.value.rol,
+    avatar: user.value.avatar,
+    pass: user.value.password,
+  };
+});
 
 const changeAvatar = (avatar) => {
   avatarSelected.value = avatar;
 };
 
-const infoUser = {
-  id: user.id,
-  name: user.name,
-  email: user.email,
-  rol: user.rol,
-  avatar: user.avatar,
-  pass: user.password,
-};
+
 </script>
 
 <template>

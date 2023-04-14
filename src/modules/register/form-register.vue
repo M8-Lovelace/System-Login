@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, watch } from "vue";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
 
@@ -14,6 +14,17 @@ const props = defineProps({
     default: {},
   },
 });
+
+watch(() => props.infoUser,(newVal) => {
+    name.value = newVal.name;
+    email.value = newVal.email;
+    rol.value = {
+      value: newVal.rol === 0 || newVal.rol === 1 ? newVal.rol : 1,
+      label: newVal.rol === 0 ? "Administrador" : "Operador",
+    };
+    props.changeAvatar(newVal.avatar);
+  }
+);
 
 const $q = useQuasar();
 const storage = ctrlUser();
