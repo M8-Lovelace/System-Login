@@ -1,9 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Login from "../views/login.vue";
-import Home from "../views/home.vue";
-import Register from "../views/register.vue";
-import Edit from "../views/editUser.vue";
-import Profile from "../views/profile.vue";
+import Login from "../views/Login.vue";
+import Home from "../views/Home.vue";
+import Register from "../views/Register.vue";
+import Edit from "../views/EditUser.vue";
+import Profile from "../views/Profile.vue";
 
 const checkAuth = async (to, from, next) => {
   const isAuthenticated = await JSON.parse(localStorage.getItem("user"));

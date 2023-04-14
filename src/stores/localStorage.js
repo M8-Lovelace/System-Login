@@ -5,7 +5,7 @@ import {
   setUser,
   validateUser,
   updateInfoUser,
-} from "../service/firebase";
+} from "../services/firebase";
 import { defineStore } from "pinia";
 
 export const ctrlUser = defineStore("ctrlUser", () => {

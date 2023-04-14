@@ -17,10 +17,10 @@
 <script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import Header from "../modules/header/header.vue";
-import Footer from "../modules/footer/footer.vue";
-import Sidebar from "../modules/sidebar/sidebar.vue";
-import LogOut from "../modules/log-out/log-out.vue";
+import Header from "../modules/Header/Header.vue";
+import Footer from "../modules/Footer/Footer.vue";
+import Sidebar from "../modules/Sidebar/Sidebar.vue";
+import LogOut from "../modules/Log-out/Log-out.vue";
 import { menuState } from "@/stores/menu";
 
 const menu = menuState();

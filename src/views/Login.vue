@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import Form from "../modules/login/form-login.vue";
+import Form from "../modules/Login/Form-login.vue";
 </script>
 
 <style scoped>

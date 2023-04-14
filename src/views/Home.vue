@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-import Message from "../modules/home/home-message.vue";
+import Message from "../modules/Home/Home-message.vue";
 </script>
