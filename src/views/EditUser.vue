@@ -1,6 +1,6 @@
 <script setup>
 import { ref,onBeforeMount } from "vue";
-import { ctrlUser } from "@/stores/localStorage";
+import { ctrlUser } from "@/stores/firebase";
 
 //components
 import Avatar from "../modules/Register/Avatar-register.vue";

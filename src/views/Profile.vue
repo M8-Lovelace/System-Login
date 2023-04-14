@@ -9,11 +9,7 @@
                 <q-btn flat round icon="arrow_back" to="/home" />
                 <span class="text-h5 text-capitalize"> {{ user.name }} </span>
                 <q-btn flat round icon="more_vert">
-                  <q-menu
-                    class="bg-white text-black"
-                    auto-close
-                    self="top middle"
-                  >
+                  <q-menu class="bg-white text-black" auto-close self="top middle">
                     <q-list style="min-width: 50px">
                       <q-item clickable dense to="/edit">
                         <q-item-section>Ver más</q-item-section>
@@ -36,12 +32,7 @@
           </q-card-section>
 
           <q-card-section class="bottom-card justify-center flex q-pa-none">
-            <q-btn
-              class="q-mb-md text-capitalize btn-edit"
-              rounded
-              label="Editar"
-              to="/edit"
-            />
+            <q-btn class="q-mb-md text-capitalize btn-edit" rounded label="Editar" to="/edit" />
             <div class="full-width content text-center">
               Leer más <br />
               <q-icon name="arrow_downward" color="blue" size="20px" />
@@ -57,7 +48,7 @@
 
 <script setup>
 import { onBeforeMount, ref } from "vue";
-import { ctrlUser } from "@/stores/localStorage";
+import { ctrlUser } from "@/stores/firebase";
 
 const storage = ctrlUser();
 const user = ref({});
@@ -79,6 +70,7 @@ onBeforeMount(async () => {
   background-size: cover;
   font-family: "Ubuntu", sans-serif;
 }
+
 .fondo::before {
   content: "";
   position: absolute;
@@ -88,6 +80,7 @@ onBeforeMount(async () => {
   height: 100%;
   background-color: rgba(26, 26, 26, 0.521);
 }
+
 .my-card {
   width: 100%;
   max-width: 400px;
@@ -95,11 +88,13 @@ onBeforeMount(async () => {
   border-radius: 15px;
   background: transparent;
 }
+
 .top-card {
   background-color: #0000009c;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .bottom-card {
   background-color: #f0f0f0;
   border-radius: 15px !important;
@@ -111,6 +106,7 @@ onBeforeMount(async () => {
   border-radius: 50%;
   padding: 3px;
 }
+
 .img-avatar img {
   width: 10%;
   height: 20%;
@@ -121,6 +117,7 @@ onBeforeMount(async () => {
   font-size: 1.4rem;
   font-weight: 700;
 }
+
 .info-text {
   font-size: 1rem;
   font-weight: 500;

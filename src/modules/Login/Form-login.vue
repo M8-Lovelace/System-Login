@@ -3,31 +3,13 @@
     <q-form class="q-gutter-md">
       <q-input filled v-model="mail" label="Correo electronico *" lazy-rules />
 
-      <q-input
-        filled
-        type="password"
-        v-model="password"
-        label="Contraseña *"
-        lazy-rules
-        :rules="[
-          (val) => (val !== null && val !== '') || 'Ingrese su contraseña',
-        ]"
-      />
+      <q-input filled type="password" v-model="password" label="Contraseña *" lazy-rules :rules="[
+                  (val) => (val !== null && val !== '') || 'Ingrese su contraseña',
+                ]" />
 
       <div v-if="!isLoading">
-        <q-btn
-          label="Iniciar Sesión"
-          @click="onSubmit($event)"
-          color="primary"
-        />
-        <q-btn
-          label="Limpiar"
-          type="reset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-          @click="cleanInputs()"
-        />
+        <q-btn label="Iniciar Sesión" @click="onSubmit($event)" color="primary" />
+        <q-btn label="Limpiar" type="reset" color="primary" flat class="q-ml-sm" @click="cleanInputs()" />
       </div>
       <div v-else class="justify-center flex ">
         <q-spinner-ios color="primary" size="2.5em" />
@@ -41,7 +23,7 @@ import { useQuasar } from "quasar";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { menuState } from "@/stores/menu";
-import { ctrlUser } from "@/stores/localStorage";
+import { ctrlUser } from "@/stores/firebase";
 
 const $q = useQuasar();
 const storage = ctrlUser();

@@ -13,17 +13,31 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ctrlUser } from "@/stores/localStorage";
+import { ctrlUser } from "@/stores/firebase";
+import { useQuasar } from "quasar";
 
+const $q = useQuasar();
 const storage = ctrlUser();
 const router = useRouter();
 
-async function logOut() {
-  storage.signOut();
+const notify = (message, color) => {
+  $q.notify({
+    message: message,
+    color: color,
+    position: "top",
+    timeout: 2000,
+  });
+};
 
-  router.push({
+async function logOut() {
+  await storage.signOutUser().then(() => {
+    notify("Vuelve pronto", "positive");
+    router.push({
     name: "login",
   });
+  }).catch((error) => {
+    notify('Error al cerrar sesión', 'negative');
+  }); 
 }
 </script>
 

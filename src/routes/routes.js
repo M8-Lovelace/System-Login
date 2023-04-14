@@ -1,12 +1,19 @@
 import { createWebHistory, createRouter } from "vue-router";
+import { ctrlUser } from "@/stores/firebase";
 import Login from "../views/Login.vue";
 import Home from "../views/Home.vue";
 import Register from "../views/Register.vue";
 import Edit from "../views/EditUser.vue";
 import Profile from "../views/Profile.vue";
 
+
+
+
+
+
 const checkAuth = async (to, from, next) => {
-  const isAuthenticated = await JSON.parse(localStorage.getItem("user"));
+  const storeCtrl = ctrlUser()
+  const isAuthenticated = storeCtrl.userData
   if (isAuthenticated && isAuthenticated.id && isAuthenticated.rol !== "") {
     next();
   } else {
@@ -20,8 +27,8 @@ export const routes = [
     path: "/",
     component: Login,
     beforeEnter: async (to, from, next) => {
-      const isAuthenticated = await JSON.parse(localStorage.getItem("user"));
-      console.log(isAuthenticated);
+      const storeCtrl = ctrlUser()
+      const isAuthenticated = storeCtrl.userData
       if (isAuthenticated && isAuthenticated.email && isAuthenticated.rol) {
         next("/home");
       } else {
