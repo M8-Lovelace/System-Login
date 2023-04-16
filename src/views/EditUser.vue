@@ -11,8 +11,8 @@ const user = ref({});
 const avatarSelected = ref();
 const infoUser = ref({});
 
-onBeforeMount(async () => {
-  user.value= await storage.getUser();
+onBeforeMount(() => {
+  user.value= storage.userData;
   avatarSelected.value = user.value.avatar;
 
   infoUser.value = {

@@ -14,7 +14,7 @@ import Profile from "../views/Profile.vue";
 const checkAuth = async (to, from, next) => {
   const storeCtrl = ctrlUser()
   const isAuthenticated = storeCtrl.userData
-  if (isAuthenticated && isAuthenticated.id && isAuthenticated.rol !== "") {
+  if (isAuthenticated && isAuthenticated.id && isAuthenticated.token !== "") {
     next();
   } else {
     next("/");
@@ -29,7 +29,8 @@ export const routes = [
     beforeEnter: async (to, from, next) => {
       const storeCtrl = ctrlUser()
       const isAuthenticated = storeCtrl.userData
-      if (isAuthenticated && isAuthenticated.email && isAuthenticated.rol) {
+      console.log(isAuthenticated)
+      if (isAuthenticated && isAuthenticated.email && isAuthenticated.token) {
         next("/home");
       } else {
         next();

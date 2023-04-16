@@ -53,8 +53,8 @@ import { ctrlUser } from "@/stores/firebase";
 const storage = ctrlUser();
 const user = ref({});
 
-onBeforeMount(async () => {
-  user.value= await storage.getUser();
+onBeforeMount(() => {
+  user.value= storage.userData;
 });
 
 
